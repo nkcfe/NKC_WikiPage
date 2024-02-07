@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import { cn } from '@/utils/style';
 import Filter from '@/components/filter';
+import NextProvider from './provider';
 
 const notoSansKr = Noto_Sans_KR({
   weight: ['500'],
@@ -28,11 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(notoSansKr.className, bebas.variable)}>
-        <Navbar />
-        <main className="mt-14 h-full w-screen ">
-          <Filter />
-          {children}
-        </main>
+        <NextProvider>
+          <Navbar />
+          <main className="mt-14 h-full w-screen ">
+            <Filter />
+            {children}
+          </main>
+        </NextProvider>
       </body>
     </html>
   );

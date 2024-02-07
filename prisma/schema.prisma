@@ -11,7 +11,9 @@ datasource db {
 }
 
 model Post {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  category  String
+  createdAt DateTime @default(now())
 }
