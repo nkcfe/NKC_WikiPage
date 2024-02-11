@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Button from './Button';
-import { TiPencil } from 'react-icons/ti';
 import Link from 'next/link';
+import Logo from '@/assets/logo.svg';
 
 const Navbar = () => {
   const router = useRouter();
@@ -14,10 +14,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="absolute top-0 flex h-14 w-screen items-center justify-between bg-white px-4 font-lilita sm:px-10">
-      <div className="text-2xl">
-        <Link href="/">CODING HUB</Link>
-      </div>
+    <div className="mx-auto flex h-20 items-center justify-between px-4 md:max-w-4xl">
+      <Link href="/" className="border-none bg-white">
+        <Logo className="w-24" />
+      </Link>
+
       <Button
         variant="blue"
         size="medium"

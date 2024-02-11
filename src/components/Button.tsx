@@ -5,11 +5,13 @@ import React, { ButtonHTMLAttributes } from 'react';
 const ButtonVariants = cva('', {
   variants: {
     variant: {
-      blue: 'bg-blue-500 text-white transition hover:bg-blue-400',
-      white: 'bg-white text-black transition hover:bg-gray-200',
+      blue: 'bg-blue-500 text-white shadow-md transition hover:bg-blue-400',
+      white:
+        'border border-gray-300 bg-white text-black shadow-md transition hover:bg-gray-200',
+      gray: 'bg-gray-200 text-gray-500 transition hover:bg-gray-100',
     },
     shape: {
-      primary: 'rounded',
+      primary: 'rounded-lg',
       full: 'rounded-full',
     },
     size: {
@@ -28,6 +30,9 @@ const ButtonVariants = cva('', {
       size: 'small',
       weight: 'normal',
     },
+    disabled: {
+      true: 'cursor-not-allowed opacity-50',
+    },
   },
 });
 
@@ -35,13 +40,14 @@ interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof ButtonVariants> {
   children: React.ReactNode;
+  disabled?: boolean;
 }
 
 const Button = (props: ButtonProps) => {
-  const { variant, shape, size, weight, children } = props;
+  const { variant, shape, size, weight, children, disabled } = props;
   return (
     <button
-      className={cn(ButtonVariants({ variant, shape, size, weight }))}
+      className={cn(ButtonVariants({ variant, shape, size, weight, disabled }))}
       {...props}
     >
       {children}

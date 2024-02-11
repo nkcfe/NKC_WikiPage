@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tiptap {
+  @apply bg-white;
+}
+
+ul,
+ol {
+  @apply px-6;
+}
+
+h1 {
+  @apply text-2xl font-bold m-2 mt-4;
+}
+
+h2 {
+  @apply text-xl font-bold m-2 mt-3;
+}
+
+h3 {
+  @apply text-lg font-bold m-2;
+}
+
+p {
+  @apply text-base m-2;
+}
+
+ul > li {
+  @apply list-disc m-2;
+}
+ol > li {
+  @apply list-decimal m-2;
+}
+
+p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+pre {
+  @apply bg-slate-100 m-1 p-10 rounded-lg text-sm;
+}
+
+blockquote {
+  @apply border-l-4 border-gray-100 m-1 p-1;
+}
+
+a {
+  @apply border px-1 bg-sky-100;
+}

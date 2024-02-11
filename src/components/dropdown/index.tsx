@@ -1,26 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import Item from './Item';
 import { cn } from '@/utils/style';
 import { motion } from 'framer-motion';
 
 interface DropdownProps {
-  data: string[];
+  children?: ReactNode;
+  selected?: string;
+  type?: 'editor' | 'filter';
+  className?: string;
 }
 
 const Dropdown = (props: DropdownProps) => {
-  const { data } = props;
+  const { children, selected, type, className } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>('전체');
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleHandler = () => {
     setIsOpen(!isOpen);
-  };
-
-  const selectHandler = (item: string) => {
-    setSelected(item);
-    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -42,8 +39,10 @@ const Dropdown = (props: DropdownProps) => {
     <div
       ref={dropdownRef}
       className={cn(
-        'relative flex h-8 w-36 cursor-pointer items-center justify-between bg-white px-4 transition',
+        'relative flex cursor-pointer items-center justify-between bg-white  transition',
         isOpen ? 'rounded-t-lg shadow-2xl' : 'rounded-lg',
+        type === 'editor' ? 'w-20 px-2 text-gray-500' : 'h-8 w-36 px-4',
+        className,
       )}
       onClick={toggleHandler}
     >
@@ -54,12 +53,13 @@ const Dropdown = (props: DropdownProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
-          className="absolute left-0 top-8 flex h-auto w-36 flex-col items-start justify-center gap-2 rounded-b-lg bg-white p-2 shadow-2xl"
+          className={cn(
+            'absolute left-0 top-8 flex h-auto w-36 flex-col items-start justify-center gap-2  bg-white p-2 shadow-2xl',
+            type === 'editor' ? 'w-20 rounded-lg' : 'w-36 rounded-b-lg',
+          )}
+          onClick={toggleHandler}
         >
-          <Item item="전체" onClick={() => selectHandler('전체')} />
-          {data.map((item) => (
-            <Item key={item} item={item} onClick={selectHandler} />
-          ))}
+          {children}
         </motion.ul>
       )}
     </div>

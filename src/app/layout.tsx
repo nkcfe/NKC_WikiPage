@@ -1,20 +1,12 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_KR, Bebas_Neue } from 'next/font/google';
+import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
 import { cn } from '@/utils/style';
-import Filter from '@/components/filter';
-import NextProvider from './provider';
+import { NextProvider, NextLayout } from './provider';
 
 const notoSansKr = Noto_Sans_KR({
-  weight: ['500'],
-  subsets: ['latin'],
-});
-
-const bebas = Bebas_Neue({
   weight: ['400'],
   subsets: ['latin'],
-  variable: '--bebas',
 });
 
 export const metadata: Metadata = {
@@ -28,13 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(notoSansKr.className, bebas.variable)}>
+      <body className={cn(notoSansKr.className)}>
         <NextProvider>
-          <Navbar />
-          <main className="mt-14 h-full w-screen ">
-            <Filter />
-            {children}
-          </main>
+          <NextLayout>{children}</NextLayout>
         </NextProvider>
       </body>
     </html>
