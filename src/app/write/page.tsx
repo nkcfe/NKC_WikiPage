@@ -19,7 +19,10 @@ import LoadingModal from '@/components/modal/LoadingModal';
 
 const Write = () => {
   const router = useRouter();
+
   const titleRef = useRef<HTMLInputElement>(null);
+  
+
   const [category, setCategory] = useState('');
   const [isMounted, setIsMounted] = useState(false);
 
