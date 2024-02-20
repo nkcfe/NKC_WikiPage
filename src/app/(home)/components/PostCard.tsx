@@ -28,7 +28,7 @@ const PostCard = ({ post }: PostCardProps) => {
         {category}
       </div>
       <div className="text-xl font-bold ">{title}</div>
-      <div className="h-5 w-full truncate font-light text-gray-500">
+      <div className="h-6 w-full truncate font-light text-gray-500">
         {textContent}
       </div>
       <div className="text-sm text-gray-400">

@@ -11,6 +11,7 @@ import Item from '@/components/dropdown/Item';
 import Loading from '@/components/Loading';
 import Pagination from '@/components/Pagination';
 import LoadingModal from '@/components/modal/LoadingModal';
+import { toast } from 'react-toastify';
 
 interface HomeProps {
   searchParams?: {
@@ -63,7 +64,11 @@ const Home = ({ searchParams }: HomeProps) => {
 
   useEffect(() => {
     refetch();
-  }, [category, year, month, refetch]);
+    if (year === '모든 연도' && month !== '모든 달') {
+      toast.error('연도를 먼저 선택해주세요.');
+      monthHandler('모든 달');
+    }
+  }, [category, year, month, refetch, monthHandler]);
 
   if (isCategoriesLoading || isYearsLoading || isPostLoading) {
     return <LoadingModal />;
